@@ -78,6 +78,7 @@
     <% if (loginMember == null) { %>
     <div id="loginBox" class="lineA">
         first 사이트 방문을 환영합니다.
+        github 확인 정보 입니다
         <button onclick="movePage();">로그인 하세요</button>
         <br>
         <a>아이디/비밀번호 조회</a> &nbsp;
