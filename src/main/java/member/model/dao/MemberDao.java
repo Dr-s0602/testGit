@@ -78,4 +78,9 @@ public class MemberDao {
 		
 	}
 
+	public Member selectMember(Connection conn, String userid) {
+	
+		return null;
+	}
+
 }

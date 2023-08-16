@@ -31,4 +31,11 @@ public class MemberService {
 
         return result;
     }
+	public Member selectMember(String userid) {
+		 Connection conn = getConnection();
+	        Member Member = memberDao.selectMember(conn, userid);
+	        close(conn);
+	        return Member;
+	}
+
 }
