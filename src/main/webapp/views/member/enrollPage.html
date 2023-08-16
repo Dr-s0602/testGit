@@ -17,6 +17,22 @@
     <script type="text/javascript">
         //전송 보내기 전에 입력 값들 유효한 값인지 확인용 함수
         function validate() {
+            //암호와 암호확인이 일치하는지 않는지 검사
+            // var pwdValue = document.getElementById("userpwd").value;
+            // var pwd2Value = document.getElementById("userpwd2").value;
+            var pwdValue = $("#userpwd").val();
+            var pwdValue2 = $('#userpwd2').val();
+            if (pwdValue !== pwdValue2) {
+                alert("암호와 암호확인이 일치하지 않습니다.");
+                document.getElementById('userpwd2').value = "";
+                document.getElementById('userpwd').select();
+                return false;
+            }
+            //아이디의 값 형식이 요구한 대로 작성되었는지 검사
+            //암호의 값 형식이 요구한 대로 자겅되었는지 검사
+            //정규 표현식 (Regulat Expression) 사용함
+            
+
             return true; //전송 보냄
         }
         function dupIDcheck() {

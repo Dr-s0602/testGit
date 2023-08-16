@@ -1,6 +1,9 @@
 package member.controller;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.util.Base64;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -55,10 +58,38 @@ public class LoginServlet extends HttpServlet {
       //String 변수 = request.getParameter("input의 name");
       String userid = request.getParameter("userid");
       String userpwd = request.getParameter("userpwd");
-      System.out.println("login : " + userid + ", " + userpwd);
+
+      //패스워드 암호화 처리
+      //웹에서는 암호화 처리에 단방향 알고리즘 사용함 : SHA-512
+      //java.security.MessageDigest 클래스 이용함
+      String cryptoUserpwd = null;
+		
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-512");
+			
+			//패스워드 문자열을 암호문으로 바꾸려면, byte[]로 변환해야 함
+			
+			byte[] pwdValues = userpwd.getBytes(Charset.forName("UTF-8"));
+			// 암호문으로 바꾸기
+			
+			md.update(pwdValues);
+			//암호화된 byte[] 을 String  으로 바꿈 : 암호문 상태임
+			cryptoUserpwd = Base64.getEncoder().encodeToString(pwdValues);
+			
+			//확인 
+			// System.out.println("암호화된 패스워드 : "+cryptoUserpwd);
+			// System.out.println("암호화된 패스워드 길이 : "+cryptoUserpwd.length());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+      
+
+      //System.out.println("login : " + userid + ", " + userpwd);
       
       //3. 서비스 메소드로 값 전달 실행하고 결과 받기
-      Member loginMember = new MemberService().selectLogin(userid, userpwd);
+      //Member loginMember = new MemberService().selectLogin(userid, userpwd);
+      Member loginMember = new MemberService().selectLogin(userid, cryptoUserpwd);
       
       //4. 받은 결과를 가지고 성공/실패 페이지 내보내기
       if(loginMember != null && loginMember.getLoginOk().equals("Y")) {   //로그인 성공

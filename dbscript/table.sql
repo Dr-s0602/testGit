@@ -252,9 +252,3 @@ set admin = 'Y'
 where userid ='admin';
 
 commit;
-
-update member
-set login_ok ='N'
-where userid = '스윗민지';
-
-commit;

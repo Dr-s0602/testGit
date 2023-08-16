@@ -84,8 +84,8 @@ public class EnrollServlet extends HttpServlet {
 			cryptoUserpwd = Base64.getEncoder().encodeToString(pwdValues);
 			
 			//확인 
-			System.out.println("암호화된 패스워드 : "+cryptoUserpwd);
-			System.out.println("암호화된 패스워드 길이 : "+cryptoUserpwd.length());
+			// System.out.println("암호화된 패스워드 : "+cryptoUserpwd);
+			// System.out.println("암호화된 패스워드 길이 : "+cryptoUserpwd.length());
 			
 		} catch (Exception e) {
 			// TODO: handle exception
