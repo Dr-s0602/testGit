@@ -39,9 +39,19 @@
             <tr>
                 <th>성별</th>
                 <td>
-                    <input type="radio" name="gender" value="M">남자 &nbsp;
-                    <input type="radio" name="gender" value="F">여자 &nbsp;
-                    <input type="radio" name="gender" value="T">제3의성 &nbsp;
+                    <% if(member.getGender().equals("M")){%>
+                        <input type="radio" name="gender" value="M" checked>남자 &nbsp;
+                        <input type="radio" name="gender" value="F">여자 &nbsp;
+                        <input type="radio" name="gender" value="T">제3의성 &nbsp;
+                    <%}else if(member.getGender().equals("F")){%>
+                        <input type="radio" name="gender" value="M">남자 &nbsp;
+                        <input type="radio" name="gender" value="F" checked>여자 &nbsp;
+                        <input type="radio" name="gender" value="T">제3의성 &nbsp;
+                    <%}else{%>
+                        <input type="radio" name="gender" value="M" >남자 &nbsp;
+                        <input type="radio" name="gender" value="F" >여자 &nbsp;
+                        <input type="radio" name="gender" value="T" checked>제3의성 &nbsp;
+                    <%}%>
                 </td>
             </tr>
             <tr>
