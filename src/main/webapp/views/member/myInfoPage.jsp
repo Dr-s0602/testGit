@@ -12,13 +12,9 @@
 <meta charset="UTF-8">
 <title>first</title>
 <style type="text/css">
-        table th {
-            background-color: #9ff;
-        }
-
-        table#outer {
-            border: 2px solid navy;
-        }
+   table th {background-color:    #FFDBE1; }
+   table#outer {border: 2px solid pink;}
+</style>
 </head>
 <body>
 <%@ include file="../common/meunbar.jsp" %>
@@ -28,8 +24,7 @@
 <table id="outer" align="center" width="500" cellsapcing="5" cellpadding="0">
    <tr><th colspan="2">등록된 회원정보는 아래와 같습니다. <br>
                 수정할 내용이 있으면 '수정페이지로 이동' 버튼을 누르세요.</th></tr>
-   <tr><th width="120">아이디</th>
-      <td><%=member.getUserId() %> </td></tr>
+   <tr><th width="120">아이디</th>   <td><%= member.getUserId() %> </td></tr>
    
    <tr><th>이름</th><td><%= member.getUserName() %></td></tr>
    <tr><th>성별</th><td><%= (member.getGender().equals("M"))?"남자":"여자" %></td></tr>
@@ -49,4 +44,4 @@
 
 
 </body>
-</html>'
+</html>
