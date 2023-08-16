@@ -79,8 +79,43 @@ public class MemberDao {
 	}
 
 	public Member selectMember(Connection conn, String userid) {
-	
-		return null;
+	Member member = null;
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+
+        String query = "SELECT * FROM MEMBER WHERE USERID = ?";
+
+        try {
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, userid);
+            rset = pstmt.executeQuery();
+
+            if(rset.next()){
+            	member = new Member();
+
+                //결과 매핑 : 컬럼값 꺼내서 필드에 옮기기
+            	member.setUserId(userid);
+                member.setUserPwd(rset.getString("USERPWD"));
+            	member.setUserName(rset.getString("USERNAME"));
+                member.setGender(rset.getString("GENDER"));
+            	member.setAge(rset.getInt("AGE"));
+            	member.setPhone(rset.getString("PHONE"));
+            	member.setEmail(rset.getString("EMAIL"));
+            	member.setEnrollDate(rset.getDate("ENROLL_DATE"));
+            	member.setLastModified(rset.getDate("LASTMODIFIED"));
+                member.setSignType(rset.getString("SIGNTYPE"));
+            	member.setAdmin(rset.getString("ADMIN"));
+                member.setLoginOk(rset.getString("LOGIN_OK"));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+
+        return member;
 	}
 
 }
