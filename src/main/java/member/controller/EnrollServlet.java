@@ -1,6 +1,9 @@
 package member.controller;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.util.Base64;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,17 +42,62 @@ public class EnrollServlet extends HttpServlet {
 		Member member = new Member(); //모델 서비스로 보낼 값의 갯수가 1개 이상이면 객체에 저장
 
 		member.setUserId(request.getParameter("userid"));
-		member.setUserPwd(request.getParameter("userpwd"));
+		//member.setUserPwd(request.getParameter("userpwd"));
+		String userPwd = request.getParameter("userpwd"); //암호화 처리를 위해 변수에 저장함
 		member.setUserName(request.getParameter("username"));
 		member.setGender(request.getParameter("gender"));
 		member.setAge(Integer.parseInt(request.getParameter("userage")));
 		member.setEmail(request.getParameter("email"));
 		member.setPhone(request.getParameter("phone"));
-
+		
+		
+		//checkbox 전송형태 :
+		//....&hobby=간&hobby=신장.....
+		// 같은 이름의 값이 여러개 전송온 경우 getParameter("이름") 사용하면 에러남
+		// getparameterValues("이름") : 리턴타입 String[] 사용함
+		// String[] hobbies = request.getParameterValues("hobby");
+		// System.out.println("hobbies.length" + hobbies.length);
+		//문자열 배열을 하나의 String 으로 변환 한다면(구분자를 ,로 정한 경우)
+		// String hobby = String.join(",", hobbies);
+		// System.out.println("hobby : " + hobby);
+		
+//		//textarea
+//		String ect = request.getParameter("etc");
+//		System.out.println(ect);
+		
+		//웹에서는 암호화 알고리즘 사용시 단방향 알고리즘만 사용함 : SHA-512
+		// 단뱡향 알고리즘은 복호화 알고리즘이 없음
+		//java.security.MessageDigest 클래스 이용함
+		
+		String cryptoUserpwd = null;
+		
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-512");
+			
+			//패스워드 문자열을 암호문으로 바꾸려면, byte[]로 변환해야 함
+			
+			byte[] pwdValues = userPwd.getBytes(Charset.forName("UTF-8"));
+			// 암호문으로 바꾸기
+			
+			md.update(pwdValues);
+			//암호화된 byte[] 을 String  으로 바꿈 : 암호문 상태임
+			cryptoUserpwd = Base64.getEncoder().encodeToString(pwdValues);
+			
+			//확인 
+			System.out.println("암호화된 패스워드 : "+cryptoUserpwd);
+			System.out.println("암호화된 패스워드 길이 : "+cryptoUserpwd.length());
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		member.setUserPwd(cryptoUserpwd);
 		
 		// 3. 모델의 서비스 메소드로 값 전달 실행하고 결과 받기
 		int result = new MemberService().insertMember(member);
 		// 4. 받은 결과로 성공 또는 실패 페이지 내보내기
+		
+		//result = 0;
 		if(result > 0){
 			//회원 가입이 성공 했을때
 			response.sendRedirect("/first/views/member/loginPage.html");
