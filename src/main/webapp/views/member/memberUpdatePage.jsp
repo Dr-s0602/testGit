@@ -29,12 +29,12 @@
             </tr>
             <tr>
                 <th width="120">아이디</th>
-                <td><input type="text" name="userid" value="<%= member.getUserid() %>" readonly> &nbsp;
+                <td><input type="text" name="userid" value="<%= member.getUserId() %>" readonly> &nbsp;
                 </td>
             </tr>
             <tr>
                 <th>이름</th>
-                <td><input type="text" name="username" value="<%= member.getUsername() %>" readonly></td>
+                <td><input type="text" name="username" value="<%= member.getUserName() %>" readonly></td>
             </tr>
             <tr>
                 <th>성별</th>
@@ -96,7 +96,7 @@
             <tr>
                 <th colspan="2">
                     <input type="submit" value="수정하기"> &nbsp;
-                    <a href="/first/mdel?userid=<%= member.getUserid() %>">탈퇴하기</a>
+                    <a href="/first/mdel?userid=<%= member.getUserId() %>">탈퇴하기</a>
                     <a href="javascript:history.go(-1)">이전 페이지로</a>
                     <a href="/first/index.jsp">시작 페이지로</a>
                 </th>
