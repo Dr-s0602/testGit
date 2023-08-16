@@ -6,18 +6,18 @@ DROP TABLE BOARD CASCADE CONSTRAINTS;
 -- 소셜로그인시 회원가입을 이용할 경우의 회원 테이블
 CREATE TABLE MEMBER(
   USERID VARCHAR2(50) CONSTRAINT PK_MEMBER_UID PRIMARY KEY,
-  USERPWD VARCHAR2(100),
+  USERPWD VARCHAR2(100) NOT NULL,
   USERNAME VARCHAR2(20) NOT NULL,
   GENDER CHAR(1)  NOT NULL,
   AGE NUMBER(3)   NOT NULL,
-  PHONE VARCHAR2(13),
-  EMAIL VARCHAR2(30) not null,  
+  PHONE VARCHAR2(13) NOT NULL,
+  EMAIL VARCHAR2(30) NOT NULL,  
   ENROLL_DATE DATE DEFAULT SYSDATE,
   LASTMODIFIED DATE DEFAULT SYSDATE,
-  signtype VARCHAR2(10) default 'direct' not null,
+  signtype VARCHAR2(10) default 'direct' NOT NULL,
   -- 가입방식 : 직접 가입('direct'), 소셜로그인('kakao', 'naver', 'google') 
-  ADMIN CHAR(1) DEFAULT 'N' not null,
-  login_ok CHAR(1) DEFAULT 'Y' not null
+  ADMIN CHAR(1) DEFAULT 'N' NOT NULL,
+  login_ok CHAR(1) DEFAULT 'Y' NOT NULL
   );
 
 comment on column member.userid is '회원아이디';

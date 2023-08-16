@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>first</title>
+    <style type="text/css">
+        table th{
+            background-color: #9ff;
+        }
+        table#outer{
+            border: 2px solid navy;
+        }
+    </style>
+    <script type="text/javascript" src="/first/resources/js/jquery-3.7.0.min.js"></script>
+    <script type="text/javascript">
+        //전송 보내기 전에 입력 값들 유효한 값인지 확인용 함수
+        function validate(){
+
+
+
+
+            return ture; //전송 보냄
+        }
+    </script>
+</head>
+<body>
+<h1 align="center">회원 가입 페이지</h1>
+<br>
+<form action="/first/enroll" method="post" onsubmit="return validate();">
+    <table id="outer" align="center" width="500" cellspacing="5" cellpadding="0">
+        <tr><th colspan="2">회원 정보를 입력해 주세요. (* 표시는 필수입력 항목입니다.)</th><td></td></tr>
+        <tr><th width="120">*아이디</th><td></td></tr>
+        <tr><th>*암호</th><td></td></tr>
+        <tr><th>*암호확인</th><td></td></tr>
+        <tr><th>*이름</th><td></td></tr>
+        <tr><th>성별</th><td></td></tr>
+        <tr><th>나이</th><td></td></tr>
+        <tr><th>전화번호</th><td></td></tr>
+        <tr><th>이메일</th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+
+    </table>
+</form>
+</body>
+</html>

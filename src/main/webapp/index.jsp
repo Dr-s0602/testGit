@@ -70,7 +70,7 @@
 <%-- 메뉴바 표시 --%>
 <%@ include file="views/common/meunbar.jsp" %>
 <hr>
-<center>
+
     <div id="banner" class="lineA">
         <img src="/first/resources/images/photo2.jpg">
     </div>
@@ -78,7 +78,6 @@
     <% if (loginMember == null) { %>
     <div id="loginBox" class="lineA">
         first 사이트 방문을 환영합니다.
-        github 확인 정보 입니다
         <button onclick="movePage();">로그인 하세요</button>
         <br>
         <a>아이디/비밀번호 조회</a> &nbsp;
@@ -90,6 +89,7 @@
         <a href="/first/logout">로그아웃</a><br>
         <a>메일</a>&nbsp;<a>채팅</a>&nbsp;<a>쪽지</a>
         <a href="/first/myinfo?userid=<%= loginMember.getUserId()%>">My Page</a>
+        <!-- <a href="/first/views/member/myInfoPage.jsp">마이페이지</a> -->
         <%--
             a 태그로 서버 컨트롤러(서블릿)로 값을 전송하는 방법 :
             쿼리 스트링(query string) 사용함
@@ -99,7 +99,7 @@
          --%>
     </div>
     <% } %>
-</center>
+
 <hr style="clear: both;">
 <%-- jsp 파일 안에 별도로 작성된 jsp, html 파일을 포함할 수 있다.
      주의 : 상대경로만 사용할 수 있음
