@@ -44,9 +44,9 @@ public class LoginServlet extends HttpServlet {
 		// 브라우저 주소표시줄에 안보임
 
 		// response :
-		// 서비스를 요청한 클라이언트 정보를 가지고 있음(url ip 주소 등)
 		// 웹에서는 클라이언트와 서버 간의 request 와 response 가 쌍으로 왔다갔다함
-
+		
+		// 서비스를 요청한 클라이언트 정보를 가지고 있음(url ip 주소 등)
 		// 서블릿 컨트롤러의 코드 작성 순서와 내용은 정해져 있음
 		// 1. 전송온 값에 한글이 있다면 인코딩 처리
 		request.setCharacterEncoding("UTF-8");

@@ -48,4 +48,34 @@ public class MemberDao {
         return member;
 	}
 
+	public int insertMember(Connection conn, Member member) {
+		int result = 0;
+        PreparedStatement pstmt = null;
+        String query = "insert into member values(?,?,?,?,?,?,?,default,default,default,default,default)";
+        
+        try {
+        	 pstmt = conn.prepareStatement(query);
+        	 
+            pstmt.setString(1, member.getUserId());
+            pstmt.setString(2, member.getUserPwd());
+            pstmt.setString(3, member.getUserName());
+            pstmt.setString(4, member.getGender());
+            pstmt.setInt(5, member.getAge());
+            pstmt.setString(6, member.getPhone());
+            pstmt.setString(7, member.getEmail());
+
+            result = pstmt.executeUpdate();
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            close(pstmt);
+        }
+
+
+        return result;
+		
+	}
+
 }
