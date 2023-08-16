@@ -1,47 +1,119 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>first</title>
     <style type="text/css">
-        table th{
+        table th {
             background-color: #9ff;
         }
-        table#outer{
+
+        table#outer {
             border: 2px solid navy;
         }
     </style>
     <script type="text/javascript" src="/first/resources/js/jquery-3.7.0.min.js"></script>
     <script type="text/javascript">
         //전송 보내기 전에 입력 값들 유효한 값인지 확인용 함수
-        function validate(){
+        function validate() {
 
 
 
 
-            return ture; //전송 보냄
+            return true; //전송 보냄
+        }
+        function dupIDcheck() {
+            //사용 가능한 아이디 인지 확인하는 함수 : ajax 기술 사용해야함
+
+            return false; // 버튼 클릭이벤트 취소 (submit 버튼에 클릭이벤트 전달을 막기 위함)
         }
     </script>
 </head>
-<body>
-<h1 align="center">회원 가입 페이지</h1>
-<br>
-<form action="/first/enroll" method="post" onsubmit="return validate();">
-    <table id="outer" align="center" width="500" cellspacing="5" cellpadding="0">
-        <tr><th colspan="2">회원 정보를 입력해 주세요. (* 표시는 필수입력 항목입니다.)</th><td></td></tr>
-        <tr><th width="120">*아이디</th><td></td></tr>
-        <tr><th>*암호</th><td></td></tr>
-        <tr><th>*암호확인</th><td></td></tr>
-        <tr><th>*이름</th><td></td></tr>
-        <tr><th>성별</th><td></td></tr>
-        <tr><th>나이</th><td></td></tr>
-        <tr><th>전화번호</th><td></td></tr>
-        <tr><th>이메일</th><td></td></tr>
-        <tr><th></th><td></td></tr>
-        <tr><th></th><td></td></tr>
-        <tr><th></th><td></td></tr>
 
-    </table>
-</form>
+<body>
+    <h1 align="center">회원 가입 페이지</h1>
+    <br>
+    <form action="/first/enroll" method="post" onsubmit="return validate();">
+        <table id="outer" align="center" width="500" cellspacing="5" cellpadding="0">
+            <tr>
+                <th colspan="2">회원 정보를 입력해 주세요. (* 표시는 필수입력 항목입니다.)</th>
+            </tr>
+            <tr>
+                <th width="120">*아이디</th>
+                <td><input type="text" name="userid" id="userid" required> &nbsp;
+                <input type="button" value="중복체크" onclick="return dupIDcheck();"> </td>
+            </tr>
+            <tr>
+                <th>*암호</th>
+                <td><input type="password" name="userpwd" id="userpwd" required></td>
+            </tr>
+            <tr>
+                <th>*암호확인</th>
+                <td><input type="password" id="userpwd2" required></td>
+            </tr>
+            <tr>
+                <th>*이름</th>
+                <td><input type="text" name="username" required></td>
+            </tr>
+            <tr>
+                <th>*성별</th>
+                <td>
+                    <input type="radio" name="gender" value="M">남자 &nbsp;
+                    <input type="radio" name="gender" value="F">여자 &nbsp;
+                    <input type="radio" name="gender" value="T">제3의성 &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <th>*나이</th>
+                <td><input type="number" name="userage" min="19" value="20" required></td>
+            </tr>
+            <tr>
+                <th>*전화번호</th>
+                <td><input type="tel" name="phone" required></td>
+            </tr>
+            <tr>
+                <th>*이메일</th>
+                <td><input type="email" name="email" required></td>
+            </tr>
+            <tr>
+                <th>원하는 부위</th>
+                <td>
+                    <table width="350">
+                        <tr>
+                            <td><input type="checkbox" name="hobby" value="간">간</td>
+                            <td><input type="checkbox" name="hobby" value="신장">신장</td>
+                            <td><input type="checkbox" name="hobby" value="폐">폐</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="hobby" value="각막">각막</td>
+                            <td><input type="checkbox" name="hobby" value="심장">심장</td>
+                            <td><input type="checkbox" name="hobby" value="소장">소장</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="hobby" value="심장동맥">심장동맥</td>
+                            <td><input type="checkbox" name="hobby" value="쓸개">쓸개</td>
+                            <td><input type="checkbox" name="hobby" value="혈액">혈액</td>
+                        </tr>
+                    </table>
+
+                </td>
+            </tr>
+            <tr>
+                <th>기타 정보</th>
+                <td><textarea name="etc" cols="50" rows="3"></textarea></td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <input type="submit" value="개인정보 해외이전 필수동의"> &nbsp;
+                    <input type="reset" value="무조건 동의"> &nbsp;
+                    <a href="/first/index.jsp">시작페이지로</a>
+                </th>
+            </tr>
+
+
+        </table>
+    </form>
 </body>
+
 </html>
