@@ -37,10 +37,10 @@ public class MemberListServlet extends HttpServlet {
 		ArrayList<Member> memberList = new MemberService().selectList();
 		RequestDispatcher view = null;
 		if(memberList.size() > 0){
-			view = request.getRequestDispatcher("veiws/member/memberListView.jsp");
+			view = request.getRequestDispatcher("views/member/memberListView.jsp");
 			request.setAttribute("memberList",memberList);
 		}else{
-			view = request.getRequestDispatcher("veiws/common/error.jsp");
+			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", "회원 정보를 읽어오는대 실패 했습니다. 코딩한 사람을 때리세요");
 		}
 		view.forward(request, response);

@@ -74,7 +74,7 @@
     <nav>
         <ul id="menuber">
             <li><a href="/first/index.jsp">home</a></li>
-            <li><a href="/first/mlist.admin">공지사항관리</a></li>
+            <li><a href="/first/nlist.admin">공지사항관리</a></li>
             <li><a href="/first/blist?page=1">게시글관리</a></li>
             <li><a href="/first/mlist">회원관리</a></li>
             <li><a href="/first/visws/testapi/testList.html">테스트</a></li>
