@@ -68,7 +68,7 @@
 %>
 <%= num/div %> --%>
 <%-- 메뉴바 표시 --%>
-<%@ include file="views/common/meunbar.jsp" %>
+<%@ include file="views/common/menubar.jsp" %>
 <hr>
 
     <div id="banner" class="lineA">

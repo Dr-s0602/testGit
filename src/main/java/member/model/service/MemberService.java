@@ -5,6 +5,7 @@ import member.model.dao.MemberDao;
 import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 public class MemberService {
     private MemberDao memberDao = new MemberDao();
@@ -58,6 +59,12 @@ public class MemberService {
         }
         close(conn);
         return result;
+	}
+	public ArrayList<Member> selectList() {
+		 Connection conn = getConnection();
+	        ArrayList<Member> memberList = memberDao.selectList(conn);
+	        close(conn);
+	        return memberList;
 	}
 
 }
