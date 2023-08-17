@@ -21,7 +21,7 @@
         }
 </head>
 <body>
-<%@ include file="../common/meunbar.jsp" %>
+<%@ include file="../common/menubar.jsp" %>
 <hr>
 <h1>내 정보 보기 : 마이 페이지</h1> 
 <br>
