@@ -12,9 +12,13 @@
 <meta charset="UTF-8">
 <title>first</title>
 <style type="text/css">
-   table th {background-color:    #FFDBE1; }
-   table#outer {border: 2px solid pink;}
-</style>
+        table th {
+            background-color: #9ff;
+        }
+
+        table#outer {
+            border: 2px solid navy;
+        }
 </head>
 <body>
 <%@ include file="../common/meunbar.jsp" %>
