@@ -164,8 +164,8 @@ public class MemberDao {
         ArrayList<Member> list = new ArrayList<Member>();
         PreparedStatement pstmt = null;
         ResultSet rset = null;
-
-        String query = "SELECT * FROM MEMBER";
+        //관리자를 제외한 일반회원만 전체 조회
+        String query = "SELECT * FROM MEMBER WHERE ADMIN='N'";
 
         try {
             pstmt = conn.prepareStatement(query);
@@ -198,6 +198,26 @@ public class MemberDao {
         }
 
         return list;
+	}
+
+	public int updateLoginOk(Connection conn, String userid, String loginok) {
+		int result = 0;
+        PreparedStatement pstmt = null;
+        String query= "update member set LOGIN_OK = ?  where userid = ?";
+        try {
+        	pstmt = conn.prepareStatement(query);
+        	 
+            pstmt.setString(1, loginok);
+            pstmt.setString(2, userid);
+            result = pstmt.executeUpdate();
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            close(pstmt);
+        }
+        return result;
 	}
 
 }

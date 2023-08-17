@@ -66,5 +66,16 @@ public class MemberService {
 	        close(conn);
 	        return memberList;
 	}
+	public int updateLoginOk(String userid, String loginok) {
+		Connection conn = getConnection();
+        int result = memberDao.updateLoginOk(conn, userid,loginok);
+        if(result > 0){
+            commit(conn);
+        }else{
+            rollback(conn);
+        }
+        close(conn);
+        return result;
+	}
 
 }
