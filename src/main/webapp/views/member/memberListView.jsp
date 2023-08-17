@@ -5,12 +5,47 @@
 %>
 <!DOCTYPE html>
 <html lang="ko">
+<style type="text/css">
+    fieldset#ss{
+        width: 600px;
+        position: relative;
+        left: 400px;
+    }
+    form fieldset{
+        width: 600px;
+    }
+    form.sform{
+        background-color: lightblue;
+        width: 600px;
+        position: relative;
+        left: 400px;
+        display: none;
+    }
+</style>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>first</title>
+    <script type="text/javascript" src="/first/resources/js/jquery-3.7.0.min.js"></script>
     <script type="text/javascript">
+        $(function(){
+            //input 태그 name이 item 의 값이 바뀌면(change) 작동되는 이벤트 핸들러 작성
+            $('input[name=item]').on('change',function(){
+                //여러 개의 태그 중에서 체크표시가 된 태그를 선택
+                $('input[name=item]').each(function(index){
+                    //선택된 radio 순번대로 하나씩 checked 인지 확인함
+                    if($(this).is(':checked')){
+                        //체크 표시된 아이템에 대한 폼이 보여지게 처리함
+                        $('form.sform').eq(index).css('display','block');
+                    }else{
+                        //체크 표시 안된 아이템에 대한 폼은 안 보이게 처리함
+                        $('form.sform').eq(index).css('display','none');
+                    }
+                });// each
+            });// on
+            
+        }); //document ready
         function changeLogin(element){
             // radio 체크 상태가 변경된(change) input 태그의 name 속성 값에서 userid 를 분리추출
             var userid = element.name.substring(8);
