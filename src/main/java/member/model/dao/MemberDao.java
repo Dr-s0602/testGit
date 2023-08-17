@@ -226,7 +226,8 @@ public class MemberDao {
         PreparedStatement pstmt = null;
         ResultSet rset = null;
         //관리자를 제외한 일반회원만 전체 조회
-        String query = "SELECT * FROM MEMBER WHERE userid like ? and ADMIN='N'"; // '%'||?||'%' 에러
+        String query = "SELECT * FROM MEMBER WHERE userid like ? and ADMIN='N'"; 
+        // '%'||?||'%' 에러
 
         try {
             pstmt = conn.prepareStatement(query);
