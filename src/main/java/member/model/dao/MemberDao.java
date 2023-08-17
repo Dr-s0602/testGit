@@ -118,4 +118,45 @@ public class MemberDao {
         return member;
 	}
 
+	public int updateMember(Connection conn, Member member) {
+		int result = 0;
+        PreparedStatement pstmt = null;
+        String query= "update member set age = ?, phone = ?, email =?, "
+                + "lastmodified = sysdate where userid = ?";
+        try {
+        	pstmt = conn.prepareStatement(query);
+        	 
+            pstmt.setInt(1, member.getAge());
+            pstmt.setString(2, member.getPhone());
+            pstmt.setString(3,member.getEmail());
+            pstmt.setString(4,member.getUserId());
+            result = pstmt.executeUpdate();
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            close(pstmt);
+        }
+        return result;
+	}
+
+	public int deleteMember(Connection conn, String userid) {
+		int result = 0;
+        PreparedStatement pstmt = null;
+        String query= "delete member where userid = ?";
+        try {
+        	pstmt = conn.prepareStatement(query);
+            pstmt.setString(1,userid);
+            result = pstmt.executeUpdate();
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            close(pstmt);
+        }
+        return result;
+	}
+
 }
