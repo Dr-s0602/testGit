@@ -130,7 +130,7 @@
         </form>
         <%-- 회원 로그인제한 검색 폼 --%>
         <form action="/first/msearch" id="lokform" class="sform" method="post">
-            <input type="hidden" name="action" value="goinok">
+            <input type="hidden" name="action" value="loginok">
             <fieldset>
                 <legend>검색할 로그인 제한/가능 을 선택하세요 선택하세요</legend>
                 <input type="radio" name="keyword" value="Y"> 로그인 가능 회원 &nbsp;

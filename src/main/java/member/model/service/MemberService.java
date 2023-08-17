@@ -5,6 +5,7 @@ import member.model.dao.MemberDao;
 import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class MemberService {
@@ -76,6 +77,36 @@ public class MemberService {
         }
         close(conn);
         return result;
+	}
+	public ArrayList<Member> selectSearchUserId(String keyword) {
+		 Connection conn = getConnection();
+	        ArrayList<Member> memberList = memberDao.selectSearchUserId(conn,keyword);
+	        close(conn);
+	        return memberList;
+	}
+	public ArrayList<Member> selectSearchGender(String keyword) {
+		 Connection conn = getConnection();
+	        ArrayList<Member> memberList = memberDao.selectSearchGender(conn,keyword);
+	        close(conn);
+	        return memberList;
+	}
+	public ArrayList<Member> selectSearchAge(String keyword) {
+		 Connection conn = getConnection();
+	        ArrayList<Member> memberList = memberDao.selectSearchAge(conn,keyword);
+	        close(conn);
+	        return memberList;
+	}
+	public ArrayList<Member> selectSearchLoginOk(String keyword) {
+		 Connection conn = getConnection();
+	        ArrayList<Member> memberList = memberDao.selectSearchLoginOk(conn,keyword);
+	        close(conn);
+	        return memberList;
+	}
+	public ArrayList<Member> selectSearchEnrollDate(Date begin, Date end) {
+		 Connection conn = getConnection();
+	        ArrayList<Member> memberList = memberDao.selectSearchEnrollDate(conn,begin,end);
+	        close(conn);
+	        return memberList;
 	}
 
 }

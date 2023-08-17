@@ -1,6 +1,7 @@
 package member.model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -218,6 +219,218 @@ public class MemberDao {
             close(pstmt);
         }
         return result;
+	}
+
+	public ArrayList<Member> selectSearchUserId(Connection conn, String keyword) {
+		 ArrayList<Member> list = new ArrayList<Member>();
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        //관리자를 제외한 일반회원만 전체 조회
+        String query = "SELECT * FROM MEMBER WHERE userid like ? and ADMIN='N'"; // '%'||?||'%' 에러
+
+        try {
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, "%" + keyword + "%");
+            rset = pstmt.executeQuery();
+
+            while(rset.next()){
+                Member member = new Member();
+
+                //결과 매핑 : 컬럼값 꺼내서 필드에 옮기기
+            	member.setUserId(rset.getString("USERID"));
+                member.setUserPwd(rset.getString("USERPWD"));
+            	member.setUserName(rset.getString("USERNAME"));
+                member.setGender(rset.getString("GENDER"));
+            	member.setAge(rset.getInt("AGE"));
+            	member.setPhone(rset.getString("PHONE"));
+            	member.setEmail(rset.getString("EMAIL"));
+            	member.setEnrollDate(rset.getDate("ENROLL_DATE"));
+            	member.setLastModified(rset.getDate("LASTMODIFIED"));
+                member.setSignType(rset.getString("SIGNTYPE"));
+            	member.setAdmin(rset.getString("ADMIN"));
+                member.setLoginOk(rset.getString("LOGIN_OK"));
+
+                list.add(member);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+
+        return list;
+	}
+
+	public ArrayList<Member> selectSearchGender(Connection conn, String keyword) {
+		 ArrayList<Member> list = new ArrayList<Member>();
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        //관리자를 제외한 일반회원만 전체 조회
+        String query = "SELECT * FROM MEMBER WHERE gender = ? and ADMIN='N'";
+
+        try {
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, keyword);
+            rset = pstmt.executeQuery();
+
+            while(rset.next()){
+                Member member = new Member();
+
+                //결과 매핑 : 컬럼값 꺼내서 필드에 옮기기
+            	member.setUserId(rset.getString("USERID"));
+                member.setUserPwd(rset.getString("USERPWD"));
+            	member.setUserName(rset.getString("USERNAME"));
+                member.setGender(rset.getString("GENDER"));
+            	member.setAge(rset.getInt("AGE"));
+            	member.setPhone(rset.getString("PHONE"));
+            	member.setEmail(rset.getString("EMAIL"));
+            	member.setEnrollDate(rset.getDate("ENROLL_DATE"));
+            	member.setLastModified(rset.getDate("LASTMODIFIED"));
+                member.setSignType(rset.getString("SIGNTYPE"));
+            	member.setAdmin(rset.getString("ADMIN"));
+                member.setLoginOk(rset.getString("LOGIN_OK"));
+
+                list.add(member);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+
+        return list;
+	}
+
+	public ArrayList<Member> selectSearchAge(Connection conn, String keyword) {
+		 ArrayList<Member> list = new ArrayList<Member>();
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        //관리자를 제외한 일반회원만 전체 조회
+        String query = "SELECT * FROM MEMBER WHERE age between ? and ? and ADMIN='N'";
+
+        try {
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, Integer.parseInt(keyword));
+            if(Integer.parseInt(keyword) == 60){
+                pstmt.setInt(2, Integer.parseInt(keyword)+1000);    
+            }else{
+                pstmt.setInt(2, Integer.parseInt(keyword)+10);
+            }
+            rset = pstmt.executeQuery();
+
+            while(rset.next()){
+                Member member = new Member();
+
+                //결과 매핑 : 컬럼값 꺼내서 필드에 옮기기
+            	member.setUserId(rset.getString("USERID"));
+                member.setUserPwd(rset.getString("USERPWD"));
+            	member.setUserName(rset.getString("USERNAME"));
+                member.setGender(rset.getString("GENDER"));
+            	member.setAge(rset.getInt("AGE"));
+            	member.setPhone(rset.getString("PHONE"));
+            	member.setEmail(rset.getString("EMAIL"));
+            	member.setEnrollDate(rset.getDate("ENROLL_DATE"));
+            	member.setLastModified(rset.getDate("LASTMODIFIED"));
+                member.setSignType(rset.getString("SIGNTYPE"));
+            	member.setAdmin(rset.getString("ADMIN"));
+                member.setLoginOk(rset.getString("LOGIN_OK"));
+
+                list.add(member);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+
+        return list;
+	}
+
+	public ArrayList<Member> selectSearchLoginOk(Connection conn, String keyword) {
+		 ArrayList<Member> list = new ArrayList<Member>();
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        //관리자를 제외한 일반회원만 전체 조회
+        String query = "SELECT * FROM MEMBER WHERE login_ok = ? and ADMIN='N'";
+
+        try {
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, keyword);
+            rset = pstmt.executeQuery();
+
+            while(rset.next()){
+                Member member = new Member();
+
+                //결과 매핑 : 컬럼값 꺼내서 필드에 옮기기
+            	member.setUserId(rset.getString("USERID"));
+                member.setUserPwd(rset.getString("USERPWD"));
+            	member.setUserName(rset.getString("USERNAME"));
+                member.setGender(rset.getString("GENDER"));
+            	member.setAge(rset.getInt("AGE"));
+            	member.setPhone(rset.getString("PHONE"));
+            	member.setEmail(rset.getString("EMAIL"));
+            	member.setEnrollDate(rset.getDate("ENROLL_DATE"));
+            	member.setLastModified(rset.getDate("LASTMODIFIED"));
+                member.setSignType(rset.getString("SIGNTYPE"));
+            	member.setAdmin(rset.getString("ADMIN"));
+                member.setLoginOk(rset.getString("LOGIN_OK"));
+
+                list.add(member);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+
+        return list;
+	}
+
+	public ArrayList<Member> selectSearchEnrollDate(Connection conn, Date begin, Date end) {
+		 ArrayList<Member> list = new ArrayList<Member>();
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        //관리자를 제외한 일반회원만 전체 조회
+        String query = "SELECT * FROM MEMBER WHERE enroll_date between ? and ? and ADMIN='N'";
+
+        try {
+            pstmt = conn.prepareStatement(query);
+            pstmt.setDate(1, begin);
+            pstmt.setDate(2, end);
+            
+            rset = pstmt.executeQuery();
+
+            while(rset.next()){
+                Member member = new Member();
+
+                //결과 매핑 : 컬럼값 꺼내서 필드에 옮기기
+            	member.setUserId(rset.getString("USERID"));
+                member.setUserPwd(rset.getString("USERPWD"));
+            	member.setUserName(rset.getString("USERNAME"));
+                member.setGender(rset.getString("GENDER"));
+            	member.setAge(rset.getInt("AGE"));
+            	member.setPhone(rset.getString("PHONE"));
+            	member.setEmail(rset.getString("EMAIL"));
+            	member.setEnrollDate(rset.getDate("ENROLL_DATE"));
+            	member.setLastModified(rset.getDate("LASTMODIFIED"));
+                member.setSignType(rset.getString("SIGNTYPE"));
+            	member.setAdmin(rset.getString("ADMIN"));
+                member.setLoginOk(rset.getString("LOGIN_OK"));
+
+                list.add(member);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+
+        return list;
 	}
 
 }
